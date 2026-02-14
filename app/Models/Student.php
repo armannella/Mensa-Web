@@ -10,10 +10,10 @@ class Student {
     public $username ;
     public $matricola ;
     private $password ;
-    public $balance = 0.00 ;
+    private $balance ;
     public $image;
 
-    private function __construct($id, $Fname , $Lname , $matricola , $username , $password , $image)
+    private function __construct($id, $Fname , $Lname , $matricola , $username , $password ,$balance, $image)
     {
         $this->id = $id ;
         $this->Fname = $Fname ;
@@ -21,13 +21,14 @@ class Student {
         $this->matricola = $matricola ;
         $this->username = $username ;
         $this->password = $password ;
+        $this->balance = $balance ;
         $this->image = $image ;
     }
 
     public static function addNewStudent($Fname , $Lname , $matricola , $username , $password) : Student {
         $query = "INSERT INTO students(Fname,Lname,matricola,username,password,image) VALUES (:f,:l,:m,:u,:p,:i)" ;
         $id = DB::queryExecuter($query , ['f'=>$Fname , 'l'=>$Lname , 'm' => $matricola , 'u' => $username, 'p' =>$password , 'i' => self::$default_avatar] , 'id');
-        return new Student($id, $Fname , $Lname , $matricola , $username , $password , self::$default_avatar) ;
+        return new Student($id, $Fname , $Lname , $matricola , $username , $password , 0.00 ,self::$default_avatar) ;
     }
 
     public static function usernameAlreadyExist($username) : bool {
@@ -66,11 +67,31 @@ class Student {
     }
 
     public static function mapToStudent ($data) : Student {
-        return new Student($data['id'], $data['Fname'] , $data['Lname'] , $data['matricola'] , $data['username'] , $data['password'] , $data['image']);
+        return new Student($data['id'], $data['Fname'] , $data['Lname'] , $data['matricola'] , $data['username'] , $data['password'] ,$data['balance'], $data['image']);
     }
 
     public function getFullName() {
         return $this->Fname . ' ' . $this->Lname ;
+    }
+
+    public function getBalance() {
+        return $this->balance;
+    }
+
+    public function decreaseBalance($amount){
+        $this->balance -= $amount ;
+        $query = "UPDATE students SET balance = :b WHERE id=:i";
+        $result = DB::queryExecuter($query , ['b' => $this->balance , 'i' => $this->id],'check');
+        return $result;
+
+    }
+
+    public function increaseBalance($amount){
+        $this->balance += $amount ;
+        $query = "UPDATE students SET balance = :b WHERE id=:i";
+        $result = DB::queryExecuter($query , ['b' => $this->balance , 'i' => $this->id],'check');
+        return $result;
+
     }
 
 }

@@ -1,2 +1,5 @@
 Date    Time    activity
 11/2/2026   5 hours     Design and Define DateBase
+12/2/2026   6 hours     backend develope (models and controllers)
+13/2/2026   5 hours     backend develope (models and controllers)
+

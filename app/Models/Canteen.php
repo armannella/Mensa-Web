@@ -46,7 +46,7 @@ class Canteen {
 
 
     public static function getAllCanteens(){
-        $query = "SELECT (id,name,address) FROM canteens WHERE 1" ;
+        $query = "SELECT id,name,address FROM canteens WHERE 1" ;
         $data = DB::queryExecuter($query , [] , 'fetchall');
         return $data;
     }

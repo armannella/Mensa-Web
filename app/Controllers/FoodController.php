@@ -24,7 +24,7 @@ class FoodController{
         if(!in_array($ext,$acceptable_ext))
         {
             echo json_encode(['status'=>'failed' , 'message'=>'file extension not acceptable']);
-            die ;
+            return ;
         } 
         $imagename = uniqid(rand(0,1000)).'.'.$ext;
         $imagedir = $targetdir.$imagename ;
@@ -54,6 +54,7 @@ class FoodController{
             echo json_encode(['status'=>'failed' , 'message'=>'problem to delete food try again :) !']);
         }
     }
+
 }
 
 ?>
