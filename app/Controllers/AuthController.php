@@ -21,11 +21,11 @@ class AuthController {
         $password = password_hash($_POST['password'] , PASSWORD_DEFAULT);
 
         if(Student::usernameAlreadyExist($username)){
-            echo json_encode(['status'=>'failed' , 'message' => 'username is already taken']);
+            echo json_encode(['status'=>'failed' , 'message' => 'username is already taken' ]);
         }
         else {
             $student = Student::addNewStudent($Fname , $Lname , $matricola , $username , $password) ;   
-            echo json_encode(['status'=>'success' , 'message' => 'you registered succesfully ! ']);
+            echo json_encode(['status'=>'success' , 'message' => 'you registered succesfully ! ' , 'redirect' => "index.php?page=student-login"]);
         }
 
     }
@@ -45,8 +45,13 @@ class AuthController {
             $student = Student::getStudentByUsername($username) ;
             if($student->verifyPassword($password)){
                 $_SESSION['id'] = $student->id;
-                $_SESSION['user'] = "student";   
-                echo json_encode(['status'=>'success' , 'message' => "Welcome dear ".$student->getFullName() ." ! "]);
+                $_SESSION['user'] = "student";
+                $_SESSION['name'] = $student->getFullName();   
+                $_SESSION['image'] = $student->image;
+                echo json_encode(['status'=>'success' , 'message' => "Welcome dear ".$student->getFullName() ." ! " , 'redirect' => "index.php?page=student-dashboard"]);
+            }
+            else {
+                echo json_encode(['status'=>'failed' , 'message' => "PassWord is Wrong"]);
             }
         }
     }
@@ -73,10 +78,22 @@ class AuthController {
         else { 
             if($canteen->verifyPassword($password)){
                 $_SESSION['id'] = $canteen->id;
-                $_SESSION['user'] = "canteen";   
-                echo json_encode(['status'=>'success' , 'message' => "Welcome ".$canteen->name ." ! "]);
+                $_SESSION['user'] = "canteen";
+                $_SESSION['name'] = $canteen->name ;
+                echo json_encode(['status'=>'success' , 'message' => "Welcome ".$canteen->name ." ! " , 'redirect' => "index.php?page=canteen-dashboard"]);
+            }
+            else {
+                echo json_encode(['status'=>'failed' , 'message' => "PassWord is Wrong"]);
             }
         }
+    }
+
+    public function showCanteenDashboard(){
+        require_once __DIR__ . '/../Views/canteen_dashboard.php' ;
+    }
+
+    public function showStudentDashboard(){
+        require_once __DIR__ . '/../Views/student_dashboard.php' ;
     }
 }
 

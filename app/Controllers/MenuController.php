@@ -5,11 +5,16 @@ use App\Models\Canteen;
 use App\Models\Menu;
 
 class MenuController{
+
+    public function showAddMenu(){
+        require_once __DIR__ . "/../Views/add_menu.php";
+    }
+
+    
     public function defineNewMenu(){
         header('Content-Type: application/json');
 
         $json = file_get_contents("php://input");
-
         $data = json_decode($json,true);
         $menu_date = $data['menu_date'];
         $meal = $data['meal'];

@@ -4,7 +4,7 @@ use App\Models\Food;
 
 class FoodController{
     public function showAddFoodPage(){
-        require_once __DIR__ . '/../Views' ;
+        require_once __DIR__ . '/../Views/foods.php' ;
     }
 
 
@@ -30,7 +30,7 @@ class FoodController{
         $imagedir = $targetdir.$imagename ;
         if(move_uploaded_file($rawimage['tmp_name'],$imagedir)){
             Food::addNewFood($name,$details,$typeID,$imagename);
-            echo json_encode(['status'=>'success' , 'message'=>'added successfully']);
+            echo json_encode(['status'=>'success' , 'message'=>'added successfully' , 'redirect' => 'index.php?page=foods']);
         }
         else {
             echo json_encode(['status'=>'failed' , 'message'=>'problem to upload in server']);
@@ -53,6 +53,10 @@ class FoodController{
         else {
             echo json_encode(['status'=>'failed' , 'message'=>'problem to delete food try again :) !']);
         }
+    }
+
+    public function getAllTypes(){
+        echo json_encode(Food::getAllTypes());
     }
 
 }

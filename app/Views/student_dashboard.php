@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Web Programming course project">
     <meta name="author" content="Arman Khademi">
-    <title>Canteen Login</title>
+    <title>Student Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/main.css">
@@ -17,15 +17,15 @@
             <div class="col-md-10">
                 <div class="row d-flex justify-content-between">
                     <div class="col-md-8">
-                        <h1 class="page-title">Canteen Login</h1>
+                        <h1 class="page-title">Dashboard</h1>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end column-gap-3">
                         <div class="leftprofile d-flex flex-column justify-content-center">
-                            <h4 class="profile-title">Mensa Web Project</h4>
-                            <h4 class="profile-desc">Arman Khademi</h4>
+                            <h4 class="profile-title"><?php echo $_SESSION['name'] ?></h4>
+                            <h4 class="profile-desc"><?php echo $_SESSION['user'] ?></h4>
                         </div>
                         <div class="rightprofile d-flex flex-column justify-content-center">
-                            <img src="assets/uploads/profiles/siteprofile.jpg" alt="Logo" width="60px" height="60px" >
+                            <img src="assets/uploads/profiles/<?php echo $_SESSION['image'] ?>" alt="Logo" width="60px" height="60px" >
                         </div>
                     </div>
                 </div>
@@ -34,31 +34,5 @@
         </div>
     </header>
 
-
-<main>
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-4">
-                        <form action="" id="loginForm">
-                            <label for="Lname" class="form-label">Username</label>
-                            <input type="text" class="form-control mb-2" name="username" id="username" placeholder="username" required>
-
-                            <label for="Lname" class="form-label">Password</label>
-                            <input type="password" class="form-control mb-3" name="password" id="password" placeholder="password" required>
-
-                            <input type="submit"  class="dokme bgc-green mb-3" value="Login !">
-                        </form>
-                        <h4 class="form-footer">Any problem to login? <a href="#">Talk to manager</a> !</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-
-    <script src="assets/js/canteenlogin.js"> </script>
 </body>
 </html>

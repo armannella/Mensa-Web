@@ -8,7 +8,7 @@ class Food {
         $id = DB::queryExecuter($query , ['n' => $name , 'd' => $details , 't'=>$typeID , 'i'=> $image] , 'id');
     }
     public static function getAllFoods(){
-        $query = "SELECT id,name,details,image,types.name as type , price FROM foods LEFT JOIN types on types.id = foods.typeID";
+        $query = "SELECT foods.id as fid,foods.name as fname ,details,image,types.name as type , price FROM foods LEFT JOIN types on types.id = foods.typeID";
         return $result = DB::queryExecuter($query,[],'fetchall');
     }
 
@@ -20,6 +20,12 @@ class Food {
     public static function getTypePrice($typeID){
         $query = "SELECT price FROM types WHERE id = :i " ;
         $result = DB::queryExecuter($query ,['i' => $typeID ],'fetch');
+        return $result ;
+    }
+
+    public static function getAllTypes(){
+        $query = "SELECT id,name FROM types WHERE 1 " ;
+        $result = DB::queryExecuter($query ,[],'fetchall');
         return $result ;
     }
 
