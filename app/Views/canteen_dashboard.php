@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="col-md-3 mb-2">
-                            <a href="index.php?logout" class="tile bgc-purple"> 
+                            <a href="index.php?page=logout" class="tile bgc-purple"> 
                                 <i class="bi bi-box-arrow-left"></i>
                                 <span>Logout</span>
                             </a>
@@ -73,7 +73,9 @@
         </div>
     </main>
 
-
+    <footer class="footer">
+        <a href="index.php?page=welcome"><i class="bi bi-windows"></i></a>
+    </footer>
     
 </body>
 </html>

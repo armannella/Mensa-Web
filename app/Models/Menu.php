@@ -17,7 +17,7 @@ class Menu {
     }
 
     public static function checkMenuExist($menu_date , $meal , $canteenID){
-        $query = "SELECT * FROM menus WHERE menu_date = :d and meal = :m and canteenID = c ;";
+        $query = "SELECT * FROM menus WHERE menu_date = :d and meal = :m and canteenID = :c ;";
         $result = DB::queryExecuter($query , ['d' => $menu_date , 'm' => $meal , 'c' => $canteenID] , 'fetch' );
         if(!$result) {
             return false ;

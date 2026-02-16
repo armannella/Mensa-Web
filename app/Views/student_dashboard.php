@@ -34,5 +34,49 @@
         </div>
     </header>
 
+
+    <main>
+        <div class="container-fluid pt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-3 mb-2">
+                            <a href="index.php?page=foods" class="tile bgc-green"> 
+                                <i class="bi bi-fork-knife"></i>
+                                <span>Add Food</span>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3 mb-2">
+                            <a href="index.php?page=show-addmenu" class="tile bgc-blue"> 
+                                <i class="bi bi-menu-up"></i>
+                                <span>Add Menu</span>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3 mb-2">
+                            <a href="index.php?" class="tile bgc-orange"> 
+                                <i class="bi bi-pc-display-horizontal"></i>
+                                <span>Reports</span>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3 mb-2">
+                            <a href="index.php?page=logout" class="tile bgc-purple"> 
+                                <i class="bi bi-box-arrow-left"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <a href="index.php?page=welcome"><i class="bi bi-windows"></i></a>
+    </footer>
+
 </body>
 </html>

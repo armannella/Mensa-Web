@@ -8,10 +8,41 @@ use App\Controllers\MenuController;
 session_start();
 
 $page = $_GET['page'] ?? 'welcome' ;
+
+
+$student_pages = ['student-dashboard'];
+$guest_only_pages = ['welcome','student-signup' , 'student-login' , 'canteen-login'];
+$canteen_pages = ['canteen-dashboard' , 'foods' ,'show-addmenu'];
+
+if ((in_array($page, $student_pages) || in_array($page, $canteen_pages)) && !isset($_SESSION['id'])) {
+    header("Location: index.php?page=welcome");
+    exit();
+}
+
+if (in_array($page, $student_pages) && $_SESSION['user'] == 'canteen') {
+    header("Location: index.php?page=canteen-dashboard");
+    exit();
+}
+
+if (in_array($page, $canteen_pages) && $_SESSION['user'] == 'student') {
+    header("Location: index.php?page=student-dashboard");
+    exit();
+}
+
+if (in_array($page, $guest_only_pages) && isset($_SESSION['id'])) {
+    if($_SESSION['user']=='student'){
+        header("Location: index.php?page=student-dashboard");
+        exit();
+    }
+    header("Location: index.php?page=canteen-dashboard");
+    exit();
+}
+
+
+
 $auth = new AuthController();
 $food = new FoodController();
 $menu = new MenuController();
-
 
 
 switch($page){
@@ -79,6 +110,10 @@ switch($page){
 
     case 'show-addmenu' :
         $menu->showAddMenu();
+        break ;
+
+    case 'add-menu' :
+        $menu->defineNewMenu();
         break ;
 
 

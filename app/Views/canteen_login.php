@@ -59,6 +59,10 @@
 </main>
 
 
+    <footer class="footer">
+        <a href="index.php?page=welcome"><i class="bi bi-windows"></i></a>
+    </footer>
+
     <script src="assets/js/canteenlogin.js"> </script>
 </body>
 </html>

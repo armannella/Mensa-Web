@@ -22,7 +22,7 @@ class MenuController{
         $foods = $data['foods'];
 
         if(Menu::checkMenuExist($menu_date , $meal , $canteenID)){
-            echo json_encode(["status" => "failed" , "message" => "you defined menu for this meal before"]);
+            echo json_encode(["status" => "failed" , "message" => "you defined menu for this meal before" , 'redirect' => 'index.php?page=canteen-dashboard']);
             return ;
         }
         else {
@@ -31,7 +31,7 @@ class MenuController{
                 Menu::addFoodsToMenu($menuID,$food['id'],$food['quantity']);
             }
 
-            echo json_encode(["status" => "success" , "message" => "the menu for day $menu_date meal $meal added !"]);
+            echo json_encode(["status" => "success" , "message" => "the menu for day $menu_date meal $meal added !" , 'redirect' => 'index.php?page=canteen-dashboard']);
         }
     }
 

@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="shortcut icon" href="assets/uploads/profiles/siteprofile.jpg" type="image/x-icon">
+
 </head>
 <body>
     <header class="container-fluid mt-3 mb-5">
@@ -35,4 +36,43 @@
     </header>
 
 
+
+<main>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="menu-date" class="form-label">menu date</label>
+                        <input type="date" name="menu-date" id="menu-date" class="form-control">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="meal" class="form-label">meal</label>
+                        <select name="meal" id="meal" class="form-select">
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="foodssection" class="my-4"></div>
+
+                <div class="row my-5">
+                    <div class="col-md-4">
+                        <button id="saveMenuBtn" class="dokme bgc-green">Publish Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<main>
+
+    <footer class="footer">
+        <a href="index.php?page=welcome"><i class="bi bi-windows"></i></a>
+    </footer>
+
     
+<script src="assets/js/addmenu.js"></script>
+</body>
+</html>

@@ -58,7 +58,10 @@
     </div>
 </main>
 
-
+    <footer class="footer">
+        <a href="index.php?page=welcome"><i class="bi bi-windows"></i></a>
+    </footer>
+    
     <script src="assets/js/studentlogin.js"> </script>
 </body>
 </html>

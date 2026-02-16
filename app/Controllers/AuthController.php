@@ -56,11 +56,12 @@ class AuthController {
         }
     }
 
-    public function logout(){
-        session_unset();
-        session_destroy();
-        echo json_encode(['status'=>'success' , 'message' => "Good bye !"]);
-    }
+        public function logout(){
+            session_unset();
+            session_destroy();
+            header("Location: index.php?page=welcome");
+            exit();
+        }
 
 
     public function showCanteenLogin() {
