@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php' ;
 use App\Controllers\AuthController;
 use App\Controllers\FoodController;
 use App\Controllers\MenuController;
+use App\Controllers\ReserveController;
 use App\Controllers\StudentController;
 
 session_start();
@@ -11,7 +12,7 @@ session_start();
 $page = $_GET['page'] ?? 'welcome' ;
 
 
-$student_pages = ['student-dashboard' , 'student-profile' , 'payments'];
+$student_pages = ['student-dashboard' , 'student-profile' , 'payments' , 'show-reserve'];
 $guest_only_pages = ['welcome','student-signup' , 'student-login' , 'canteen-login'];
 $canteen_pages = ['canteen-dashboard' , 'foods' ,'show-addmenu'];
 
@@ -45,6 +46,7 @@ $auth = new AuthController();
 $food = new FoodController();
 $menu = new MenuController();
 $student = new StudentController();
+$reserve = new ReserveController();
 
 
 switch($page){
@@ -148,6 +150,30 @@ switch($page){
         break ;
 
     
+    case 'show-reserve' :
+        $reserve->showReservePage();
+        break ;
+    
+    case 'get-canteens' :
+        $menu->getAllCanteens();
+        break;
+    
+    case 'get-available-menus' :
+        $menu->getMenusOfCanteen();
+        break ;
+    
+    case 'get-menu-details' :
+        $menu->getMenuInfo();
+        break;
+    
+    case 'get-live-price' :
+        $reserve->liveCalculateFoodsPrice();
+        break;
+    
+    case 'add-reserve' :
+        $reserve->addReserve();
+        break ;
+
     default :
         $auth->welcome();
         break;

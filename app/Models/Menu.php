@@ -2,9 +2,6 @@
 namespace App\Models ;
 use App\core\DB ;
 class Menu {
-    public function __construct()
-    {
-    }
 
     public static function addMenu($menu_date,$meal,$canteenID){
         $query = "INSERT INTO menus(menu_date,meal,canteenID) VALUES (:d , :m , :c)";
@@ -32,7 +29,7 @@ class Menu {
     }
 
     public static function getAvailableMenusOfCanteen($canteenID){
-        $query = "SELECT * FROM menus WHERE menu_date >= CURRENT_DATE AND canteenID = :c ;";
+        $query = "SELECT id,menu_date,meal FROM menus WHERE menu_date >= CURRENT_DATE AND canteenID = :c ORDER BY menu_date ASC , meal DESC ;";
         $result = DB::queryExecuter($query , ['c' => $canteenID] , 'fetchall' );
         return $result ;
     }

@@ -36,6 +36,7 @@ class MenuController{
     }
 
     public function getAllCanteens(){
+        header('Content-Type: application/json');
         echo json_encode(Canteen::getAllCanteens());
     }
 

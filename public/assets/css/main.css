@@ -8,7 +8,7 @@ body {
 }
 
 
-main {
+main , #contents > * {
     animation: slideIn 0.5s ease-out;
 }
 
