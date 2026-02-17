@@ -3,3 +3,10 @@ Date    Time    activity
 12/2/2026   6 hours     backend develope (models and controllers)
 13/2/2026   5 hours     backend develope (models and controllers)
 
+15/2/2026   14 hours     front develope 
+16/2/2026   15 hours     front develope
+
+
+
+sum => 45 hours ;
+

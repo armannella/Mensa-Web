@@ -44,7 +44,7 @@ class MenuController{
         header('Content-Type: application/json');
         $json = file_get_contents("php://input");
         $data = json_decode($json,true);
-        $canteenID = $data['canteenID'];
+        $canteenID = $data['canteenID'] ?? $_SESSION['id'];
         echo json_encode(Menu::getAvailableMenusOfCanteen($canteenID));
     }
 

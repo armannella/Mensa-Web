@@ -55,6 +55,7 @@ CREATE TABLE menu_details (
     menuID int ,
     foodID int ,
     quantity int ,
+    capacity int ,
     UNIQUE (menuID, foodID),
     FOREIGN KEY (foodID) REFERENCES foods(id) ON DELETE CASCADE ON UPDATE CASCADE ,
     FOREIGN KEY (menuID) REFERENCES menus(id) ON DELETE CASCADE ON UPDATE CASCADE

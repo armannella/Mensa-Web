@@ -37,23 +37,52 @@ class Reserve {
     }
 
     public static function getActiveReservesOfStudent($studentID){
-        $query = "SELECT reserves.id as reserveID , canteen.name as canteen , menu_date , meal 
+        $query = "SELECT reserves.id as reserveID , canteens.name as canteen , menu_date , meal , reserves.created_date as created_date
         FROM reserves LEFT JOIN menus on menus.id = reserves.menuID  LEFT JOIN canteens on canteens.id = menus.canteenID 
         WHERE studentID = :s and status = :t and menu_date >= CURRENT_DATE 
         Order by menu_date ASC , meal DESC ;
         ";
-        $result = DB::queryExecuter($query , ['s' => $studentID , 't' => 'delivered'] , 'fetchall');
+        $result = DB::queryExecuter($query , ['s' => $studentID , 't' => 'reserved'] , 'fetchall');
         return $result ;
     }
 
     public static function getReserveDetails($reserveID) {
         $query = "SELECT name,typeID,image
-        FROM reserve_details LEFT JOIN foods on foods.id = reserve_details.reserveID 
+        FROM reserve_details LEFT JOIN foods on foods.id = reserve_details.foodID 
         Where reserveID = :r
         ";
         $result = DB::queryExecuter($query , ['r' => $reserveID] , 'fetchall');
         return $result ;
     }
+
+    public static function getReserveStatus($reserveID) {
+        $query = "SELECT status
+        FROM reserves
+        Where id = :r
+        ";
+        $result = DB::queryExecuter($query , ['r' => $reserveID] , 'fetch');
+        return $result['status'] ;
+    }
+
+    public static function getReserveMenuID($reserveID) {
+        $query = "SELECT menuID
+        FROM reserves
+        Where id = :r
+        ";
+        $result = DB::queryExecuter($query , ['r' => $reserveID] , 'fetch');
+        return $result['menuID'] ;
+    }
+
+    public static function getReserveStudentID($reserveID) {
+        $query = "SELECT studentID
+        FROM reserves
+        Where id = :r
+        ";
+        $result = DB::queryExecuter($query , ['r' => $reserveID] , 'fetch');
+        return $result['studentID'] ;
+    }
+
+
 
 
 

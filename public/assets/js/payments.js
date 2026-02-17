@@ -38,7 +38,7 @@ async function getWalletInfo(){
         if (type == "charge"){
             cls = "payment-charge";
         }
-        if (type == "reserve"){
+        if (type == "reservation"){
             cls = "payment-reserve";
         }
         paymentslist += `

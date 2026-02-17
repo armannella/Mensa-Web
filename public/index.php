@@ -12,9 +12,9 @@ session_start();
 $page = $_GET['page'] ?? 'welcome' ;
 
 
-$student_pages = ['student-dashboard' , 'student-profile' , 'payments' , 'show-reserve'];
-$guest_only_pages = ['welcome','student-signup' , 'student-login' , 'canteen-login'];
-$canteen_pages = ['canteen-dashboard' , 'foods' ,'show-addmenu'];
+$student_pages = ['student-dashboard' , 'student-profile' , 'payments' , 'show-reserve' , 'active-reserves'];
+$guest_only_pages = ['welcome','student-signup' , 'student-login' , 'canteen-login' , ];
+$canteen_pages = ['canteen-dashboard' , 'foods' ,'show-addmenu' , 'active-meals' , 'deliver-foods'];
 
 if ((in_array($page, $student_pages) || in_array($page, $canteen_pages)) && !isset($_SESSION['id'])) {
     header("Location: index.php?page=welcome");
@@ -174,6 +174,39 @@ switch($page){
         $reserve->addReserve();
         break ;
 
+    case 'active-reserves' :
+        $reserve->showActiveReservesPage();
+        break;
+    
+    case 'active-meals' :
+        $reserve->showActiveMealsPage();
+        break;
+
+    
+    case 'get-active-reserves':
+        $reserve->getActiveReserves();
+        break;
+    
+    case 'get-reserve-details' :
+        $reserve->getReserveDetails();
+        break;
+
+    case 'deliver-foods':
+         $reserve->showDeliverePage();
+         break;
+    
+    case 'check-delivere' :
+        $reserve->registerDelivery();
+        break ;
+
+    case 'get-active-meals' :
+        $menu->getMenusOfCanteen();
+        break;
+    
+    case 'get-student-reserve-info' :
+        $reserve->getStudentInfoByReserveID();
+        break;
+    
     default :
         $auth->welcome();
         break;

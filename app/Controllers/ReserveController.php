@@ -5,7 +5,7 @@ use App\Models\Reserve;
 use App\Models\Food;
 use App\Models\Menu;
 use App\Models\Student;
-use BcMath\Number;
+
 
 class ReserveController {
     public function addReserve(){
@@ -87,11 +87,70 @@ class ReserveController {
     }
 
     public function showReservePage(){
-        require_once __DIR__ . '/../Views/reserve1_select_mensa.php';
+        require_once __DIR__ . '/../Views/reserve.php';
     }
 
-    
+    public function showActiveReservesPage(){
+        require_once __DIR__ . '/../Views/active_reserves_student.php';
+    }
+
+    public function showActiveMealsPage(){
+        require_once __DIR__ . '/../Views/active_reserves_canteen.php';
+    }
+
+    public function showDeliverePage(){
+        require_once __DIR__ . '/../Views/deliver_food.php';
+    }
+
+    public function registerDelivery(){
+        header('Content-Type: application/json');
+        
+        $reserveID = $_POST['reserveID'];
+        $canteenID = $_SESSION['id'];
+        $meal = $_POST['meal'];
+        $menu_date = $_POST['menu_date'];
+
+        //check 1 : status reserve 
+
+        $status_reserve = Reserve::getReserveStatus($reserveID);
+        if($status_reserve == "delivered"){
+            echo json_encode(['status' => "failed" , 'message' => "how many times u wanna get food idiot"]);
+            return ;
+        }
+
+        //check 2 : menus are same
+
+        $ourMenuID = Menu::getMenu($menu_date,$meal,$canteenID);
+        $ourMenuID = $ourMenuID['id'];
+
+        $studentMenuID = Reserve::getReserveMenuID($reserveID);
+
+        if($studentMenuID != $ourMenuID) {
+            echo json_encode(['status' => "failed" , 'message' => "this reserve is not for this Menu"]);
+            return ;
+        }
+
+
+        Reserve::delivereReserve($reserveID);
+        echo json_encode(['status' => "success" , 'message' => "Valid Request"]);
+    }
+
+
+    public function getStudentInfoByReserveID(){
+        header('Content-Type: application/json');
+        $json = file_get_contents("php://input");
+        $data = json_decode($json ,  true) ;
+        $reserveID = $data['reserveID'];
+
+        $studentID = Reserve::getReserveStudentID($reserveID);
+        $studentObj = Student::getStudentByID($studentID);
+
+        $studentinfo = ['name' => $studentObj->getFullName() , 'image' => $studentObj->image];
+        echo json_encode($studentinfo);
+    }
      
+
+    
 }
 
 

@@ -9,8 +9,8 @@ class Menu {
         return $id ;
     }
     public static function addFoodsToMenu($menuID,$foodID,$quantity){
-        $query = "INSERT INTO menu_details(menuID,foodID,quantity) VALUES (:m,:f,:q)";
-        DB::queryExecuter($query,['m' => $menuID , 'f' =>$foodID , 'q' => $quantity] , 'check');
+        $query = "INSERT INTO menu_details(menuID,foodID,quantity,capacity) VALUES (:m,:f,:q ,:c)";
+        DB::queryExecuter($query,['m' => $menuID , 'f' =>$foodID , 'q' => $quantity , 'c' => $quantity] , 'check');
     }
 
     public static function checkMenuExist($menu_date , $meal , $canteenID){
@@ -35,7 +35,7 @@ class Menu {
     }
 
     public static function getMenuFoods($menuID){
-        $query = "SELECT foodID,quantity ,name,details,typeID,image FROM menus LEFT JOIN menu_details on menus.id = menu_details.menuID LEFT JOIN foods on menu_details.foodID= foods.id where menuID = :i";
+        $query = "SELECT foodID,quantity ,name,details,typeID,image,capacity FROM menus LEFT JOIN menu_details on menus.id = menu_details.menuID LEFT JOIN foods on menu_details.foodID= foods.id where menuID = :i";
         $result = DB::queryExecuter($query , ['i' => $menuID] , 'fetchall');
         return $result;
     }
@@ -45,6 +45,7 @@ class Menu {
         $result = DB::queryExecuter($query , ['m' => $menuID , 'f' =>$foodID ], 'check');
         return $result ;
     }
+
 
     
 

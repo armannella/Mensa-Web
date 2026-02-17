@@ -48,9 +48,9 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <a href="index.php?page=" class="tile bgc-blue"> 
+                            <a href="index.php?page=active-reserves" class="tile bgc-blue"> 
                                 <i class="bi bi-menu-up"></i>
-                                <span>Your Meals</span>
+                                <span>Active Reserves</span>
                             </a>
                         </div>
 
