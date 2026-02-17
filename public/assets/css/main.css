@@ -234,3 +234,24 @@ tbody tr:hover {
     color: cyan;
 
 }
+
+.image-profile-section {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+
+}
+
+.image-profile-section > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.payment-charge {
+    background-color: rgba(3, 216, 63, 0.1);
+}
+
+.payment-reserve {
+    background-color: rgba(255 ,50 , 26 , 0.4);
+}

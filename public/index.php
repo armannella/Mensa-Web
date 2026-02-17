@@ -4,13 +4,14 @@ require_once __DIR__ . '/../vendor/autoload.php' ;
 use App\Controllers\AuthController;
 use App\Controllers\FoodController;
 use App\Controllers\MenuController;
+use App\Controllers\StudentController;
 
 session_start();
 
 $page = $_GET['page'] ?? 'welcome' ;
 
 
-$student_pages = ['student-dashboard'];
+$student_pages = ['student-dashboard' , 'student-profile' , 'payments'];
 $guest_only_pages = ['welcome','student-signup' , 'student-login' , 'canteen-login'];
 $canteen_pages = ['canteen-dashboard' , 'foods' ,'show-addmenu'];
 
@@ -43,6 +44,7 @@ if (in_array($page, $guest_only_pages) && isset($_SESSION['id'])) {
 $auth = new AuthController();
 $food = new FoodController();
 $menu = new MenuController();
+$student = new StudentController();
 
 
 switch($page){
@@ -117,6 +119,35 @@ switch($page){
         break ;
 
 
+    case 'student-profile' :
+        $student->showEditProfilePage();
+        break ; 
+    
+    case 'student-change-pass' :
+        $student->changePassword();
+        break ;
+    
+    case 'student-change-img' :
+        $student->changeImage();
+        break ;
+    
+    case 'student-get-info' :
+        $student->getStudentProfile();
+        break ;
+
+    case 'payments' :
+        $student->showPaymentsPage();
+        break;
+    
+    case 'add-payment' :
+        $student->addPayment();
+        break ;
+    
+    case 'get-payments' :
+        $student->getWalletInfo();
+        break ;
+
+    
     default :
         $auth->welcome();
         break;

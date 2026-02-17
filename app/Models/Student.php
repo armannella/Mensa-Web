@@ -94,6 +94,20 @@ class Student {
 
     }
 
+    public function changePassword($newPassword){
+        $this->password = $newPassword ;
+        $query = "UPDATE students SET password = :p WHERE id=:i";
+        $result = DB::queryExecuter($query , ['p' => $this->password , 'i' => $this->id],'check');
+        return $result ;
+    }
+
+    public function changeImage($newimage){
+        $this->image = $newimage ;
+        $query = "UPDATE students SET image = :p WHERE id=:i";
+        $result = DB::queryExecuter($query , ['p' => $this->image , 'i' => $this->id],'check');
+        return $result ;
+    }
+
 }
 
 ?>
