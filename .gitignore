@@ -1,0 +1,6 @@
+public/assets/uploads/profiles/*
+public/assets/uploads/foods/*
+
+
+!public/assets/uploads/profiles/siteprofile.jpg
+!public/assets/uploads/profiles/default-profile-pic.png
