@@ -110,15 +110,7 @@ class ReserveController {
         $meal = $_POST['meal'];
         $menu_date = $_POST['menu_date'];
 
-        //check 1 : status reserve 
-
-        $status_reserve = Reserve::getReserveStatus($reserveID);
-        if($status_reserve == "delivered"){
-            echo json_encode(['status' => "failed" , 'message' => "how many times u wanna get food idiot"]);
-            return ;
-        }
-
-        //check 2 : menus are same
+        //check 1 : menus are same
 
         $ourMenuID = Menu::getMenu($menu_date,$meal,$canteenID);
         $ourMenuID = $ourMenuID['id'];
@@ -129,6 +121,15 @@ class ReserveController {
             echo json_encode(['status' => "failed" , 'message' => "this reserve is not for this Menu"]);
             return ;
         }
+        
+        //check 2 : status reserve 
+
+        $status_reserve = Reserve::getReserveStatus($reserveID);
+        if($status_reserve == "delivered"){
+            echo json_encode(['status' => "failed" , 'message' => "how many times u wanna get food idiot"]);
+            return ;
+        }
+
 
 
         Reserve::delivereReserve($reserveID);

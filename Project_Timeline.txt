@@ -2,11 +2,11 @@ Date    Time    activity
 11/2/2026   5 hours     Design and Define DateBase
 12/2/2026   6 hours     backend develope (models and controllers)
 13/2/2026   5 hours     backend develope (models and controllers)
-
+14/2/2026   4 hours     study about principles of Metro UI
 15/2/2026   14 hours     front develope 
 16/2/2026   15 hours     front develope
 
 
 
-sum => 45 hours ;
+sum => 49 hours ;
 
