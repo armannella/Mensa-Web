@@ -44,7 +44,7 @@ Front-end and back-end are fully separated for better scalability and maintainab
 - Bootstrap  
 - JavaScript  
 
-UI design inspired by Metro UI from :contentReference[oaicite:0]{index=0} (introduced in :contentReference[oaicite:1]{index=1}).
+UI design inspired by Metro UI from Microsoft for Windows 8 .
 
 ### Back-End
 - Core PHP (No frameworks)
